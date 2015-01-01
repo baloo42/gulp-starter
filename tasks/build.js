@@ -29,15 +29,20 @@ gulp.task('build:html:beautify', function() {
 
 gulp.task('build:css', ['build:css:compile-styles']);
 
-gulp.task('build:assets', ['build:compress:images', 'build:compress:fonts']);
+gulp.task('build:assets', ['build:assets:others', 'build:assets:images', 'build:assets:fonts']);
 
-gulp.task('build:compress:images', function() {
+gulp.task('build:assets:others', function() {
+  return gulp.src(c.files.source.assets)
+    .pipe(gulp.dest(c.paths.target.base));
+});
+
+gulp.task('build:assets:images', function() {
   return gulp.src(c.files.source.images)
     .pipe($.cache($.imagemin(c.imagemin)))
     .pipe(gulp.dest(c.paths.target.images));
 });
 
-gulp.task('build:compress:fonts', function() {
+gulp.task('build:assets:fonts', function() {
   return gulp.src(require('main-bower-files')().concat(c.files.source.fonts))
     .pipe($.filter(c.files.allFonts))
     .pipe($.flatten())

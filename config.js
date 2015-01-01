@@ -39,6 +39,11 @@ var paths = {
         get templateData() {
             return this.base + "/data";
         },
+        
+        get assets() {
+            return this.base + "/assets";
+        },
+        
         get styles() {
             return this.base + "/styles";
         },
@@ -117,6 +122,7 @@ var files = {
     },
 
     source: {
+        assets: paths.source.assets + "/" + recursive,
         images: paths.source.images + "/" + recursive,
         fonts: paths.source.fonts + "/" + fontsRecursive
     },
