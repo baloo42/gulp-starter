@@ -40,10 +40,16 @@ gulp.task('build:html:compile-templates', function() {
 
 
 gulp.task('build:css:compile-styles', function() {
-    return gulp.src(c.file.source.mainStyle)
-        .pipe($.sourcemaps.init(c.sourceMaps.init))
+    return gulp.src("./src/styles/*.scss")
+        .pipe($.debug())
+        //.pipe($.sourcemaps.init(c.sourceMaps.init))
         .pipe($.sass(c.sass))
-        .pipe($.sourcemaps.write(
-            c.paths.target.cssMapsRelative, c.sourceMaps.write))
+        // Catch any SCSS errors and prevent them from crashing gulp
+        .on('error', function (error) {
+            console.error(error);
+            this.emit('end');
+        })
+        //.pipe($.sourcemaps.write(
+          //  c.paths.target.cssMapsRelative, c.sourceMaps.write))
         .pipe(gulp.dest(c.paths.target.css));
 });
