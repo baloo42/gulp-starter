@@ -24,19 +24,20 @@ gulp.task('watch', ['build'], function() {
         c.files.layoutTemplates,
         c.files.componentTemplates
     ];
-
+    
+    var onChange = function(evt) {
+        changeEvent(evt);
+    };
+        
     gulp.watch(mvwhatever, ['build:html', browserSync.reload])
-        .on('change', function(evt) {
-            changeEvent(evt);
-        });
+        .on('change', onChange);
 
     gulp.watch(c.files.styles, ['build:css', browserSync.reload])
-        .on('change', function(evt) {
-            changeEvent(evt);
-        });
+        .on('change', onChange);
 
     gulp.watch(c.files.source.javascript, ['build:javascript', browserSync.reload])
-        .on('change', function(evt) {
-            changeEvent(evt);
-        });
+        .on('change', onChange);
+    
+    gulp.watch(c.files.source.images, ['build:assets:images', browserSync.reload])
+        .on('change', onChange);
 });
