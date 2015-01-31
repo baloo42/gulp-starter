@@ -9,13 +9,14 @@ var runSequence = require('run-sequence');
 
 
 gulp.task('build:assets:images', function(callback) {
-  runSequence('build:assets:images:modify', 'build:assets:images:minify', callback);
+  runSequence('build:assets:images:minify', 'build:assets:images:modify', callback);
 });
 
 
 gulp.task('build:assets:images:minify', function() {
   return gulp.src(c.files.source.images)
-      .pipe($.cache($.imagemin(c.imagemin)))
+      .pipe($.newer(c.paths.target.images))
+      .pipe($.imagemin(c.imagemin))
       .pipe(gulp.dest(c.paths.target.images));
 });
 gulp.task('build:assets:images:modify', function() {
