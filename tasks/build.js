@@ -15,7 +15,7 @@ gulp.task('build', ['build:dev']);
 
 gulp.task('build:dev', function(callback) {
   //['clean', 'build:html', 'build:css', 'build:assets']
-  runSequence('clean', ['build:html', 'build:css', 'build:assets'], callback);
+  runSequence('clean', ['build:html', 'build:css', 'build:javascript', 'build:assets'], callback);
 });
 gulp.task('build:prod', ['build-dev']); //TODO: compress/minify/uglify/uncss http://www.mikestreety.co.uk/blog/an-advanced-gulpjs-file
 
@@ -29,6 +29,11 @@ gulp.task('build:html:beautify', function() {
   return gulp.src(c.files.html)
     .pipe($.jsbeautifier(c.jsbeautifier.html))
     .pipe(gulp.dest(c.paths.target.base));
+});
+
+gulp.task('build:javascript', function() {
+  return gulp.src(c.file.source.mainJavaScript)
+    .pipe(gulp.dest(c.paths.target.javascript));
 });
 
 gulp.task('build:css', ['build:css:compile-styles']);
