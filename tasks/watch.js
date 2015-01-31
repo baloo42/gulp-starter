@@ -34,4 +34,9 @@ gulp.task('watch', ['build'], function() {
         .on('change', function(evt) {
             changeEvent(evt);
         });
+
+    gulp.watch(c.files.source.javascript, ['build:javascript', browserSync.reload])
+        .on('change', function(evt) {
+            changeEvent(evt);
+        });
 });

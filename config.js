@@ -132,7 +132,8 @@ var files = {
     source: {
         assets: paths.source.assets + "/" + recursive,
         images: paths.source.images + "/" + recursive,
-        fonts: paths.source.fonts + "/" + fontsRecursive
+        fonts: paths.source.fonts + "/" + fontsRecursive,
+        javascript: paths.source.javascript + "/" + javascriptRecursive
     },
 
     target: {
