@@ -53,6 +53,10 @@ var paths = {
 
         get fonts() {
             return this.base + "/fonts";
+        },
+        
+        get javascript() {
+            return this.base + "/javascript";
         }
     },
 
@@ -75,6 +79,10 @@ var paths = {
 
         get fonts() {
             return this.base + "/fonts";
+        },
+        
+        get javascript() {
+            return this.base + "/js";
         }
         
     },
@@ -141,6 +149,7 @@ var file = {
 
     source: {
         mainStyle: paths.source.styles + "/main.scss",
+        mainJavaScript: paths.source.javascript + "/main.js",
 
         get templateDataGlobal() {
             return paths.source.templateData + "/global.json";
