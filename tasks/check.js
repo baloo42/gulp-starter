@@ -9,6 +9,7 @@ var $ = require('gulp-load-plugins')(c.gulpLoad);
 
 gulp.task('check:data', function(){
     return gulp.dest(c.files.templateData)
+        .pipe($.debug())
         .pipe($.jsonLint())
         .pipe($.jsonLint.report('verbose'));
 });

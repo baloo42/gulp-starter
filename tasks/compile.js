@@ -19,13 +19,23 @@ Compiles the view twig templates using global and view specific data.
 gulp.task('build:html:compile-templates', function() {
     return gulp.src(c.files.viewTemplates)
         .pipe($.data(function(file) {
+            var viewDataFile, globalData;
+            try {
+                globalData = JSON.parse(fs.readFileSync(c.file.source.templateDataGlobal));
+                viewDataFile = c.file.source.templateData(file.path);    
+            }catch(err){
+                console.log("parsing global data failed -", viewDataFile,  err);
+            }
             
-            var globalData = JSON.parse(fs.readFileSync(c.file.source.templateDataGlobal));
-            var viewDataFile = c.file.source.templateData(file.path);
             
             if (fs.existsSync(viewDataFile)) {
-                var viewData = JSON.parse(fs.readFileSync(viewDataFile));
-                var mergedData = deepmerge(globalData, viewData);
+                var mergedData;
+                try {
+                    var viewData = JSON.parse(fs.readFileSync(viewDataFile));
+                    mergedData = deepmerge(globalData, viewData);
+                } catch(err) {
+                    console.log("merging template data failed -", viewDataFile,  err);
+                }
 
                 return mergedData;
             }

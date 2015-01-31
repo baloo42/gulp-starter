@@ -13,3 +13,5 @@ module.exports = function() {
   // Keep gulp from hanging on this task
   this.emit('end');
 };
+
+// https://github.com/9elements/academy-webdev-bootstrap/blob/master/gulpfile.coffee

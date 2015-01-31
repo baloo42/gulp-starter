@@ -7,6 +7,10 @@ var c = require('../config');
 var $ = require('gulp-load-plugins')(c.gulpLoad);
 var runSequence = require('run-sequence');
 
+//###############################################################################
+// high level tasks
+//###############################################################################
+
 gulp.task('build', ['build:dev']);
 
 gulp.task('build:dev', function(callback) {
@@ -31,20 +35,4 @@ gulp.task('build:css', ['build:css:compile-styles']);
 
 gulp.task('build:assets', ['build:assets:others', 'build:assets:images', 'build:assets:fonts']);
 
-gulp.task('build:assets:others', function() {
-  return gulp.src(c.files.source.assets)
-    .pipe(gulp.dest(c.paths.target.base));
-});
 
-gulp.task('build:assets:images', function() {
-  return gulp.src(c.files.source.images)
-    .pipe($.cache($.imagemin(c.imagemin)))
-    .pipe(gulp.dest(c.paths.target.images));
-});
-
-gulp.task('build:assets:fonts', function() {
-  return gulp.src(require('main-bower-files')().concat(c.files.source.fonts))
-    .pipe($.filter(c.files.allFonts))
-    .pipe($.flatten())
-    .pipe(gulp.dest(c.paths.target.fonts));
-});

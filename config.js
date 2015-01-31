@@ -180,8 +180,8 @@ var sass = {
         console.log("Fail. Error:", err);
     },
     onSuccess: function(css) {
-        console.log("Success - Entry:", css.stats.entry);
-        console.log("Duration:", css.stats.duration);
+        // console.log("Success - Entry:", css.stats.entry);
+        // console.log("Duration:", css.stats.duration);
     }
 };
 
