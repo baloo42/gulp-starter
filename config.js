@@ -183,8 +183,18 @@ var twig = {
 
 var sass = {
     errorLogToConsole: true,
-    outputStyles: 'nested'
+    outputStyles: 'nested',
+    precision: 10,
+    onError: function (err) {
+        console.log("Fail. Error:", err);
+    },
+    onSuccess: function(css) {
+        console.log("Success - Entry:", css.stats.entry);
+        console.log("Duration:", css.stats.duration);
+    }
 };
+
+
 
 var sourceMaps = {
     init: {
