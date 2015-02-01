@@ -5,7 +5,7 @@ var jsonFile = ".json";
 var javascriptFile = ".js";
 var twigFile = ".twig";
 var styleFile = ".scss";
-var fontFile = ".{eot,svg,ttf,woff}";
+var fontFile = ".{eot,svg,ttf,woff,woff2}";
 
 var all = "*";
 var allTwig = all + twigFile;
