@@ -29,7 +29,7 @@ gulp.task('watch', ['build'], function() {
         changeEvent(evt);
     };
         
-    gulp.watch(mvwhatever, ['build:html', browserSync.reload])
+    gulp.watch(mvwhatever, ['build:html:dev', browserSync.reload])
         .on('change', onChange);
 
     gulp.watch(c.files.styles, ['build:css', browserSync.reload])
