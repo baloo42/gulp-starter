@@ -51,7 +51,7 @@ gulp.task('build:html:compile-templates', function() {
 
 gulp.task('build:css:compile-styles', function() {
     return gulp.src(c.file.source.mainStyle)
-        //.pipe($.debug())
+        .pipe($.debug())
         .pipe($.sourcemaps.init(c.sourceMaps.init))
         .pipe($.sass(c.sass))
         // Catch any SCSS errors and prevent them from crashing gulp
@@ -62,4 +62,11 @@ gulp.task('build:css:compile-styles', function() {
         .pipe($.sourcemaps.write(
             c.paths.target.cssMapsRelative, c.sourceMaps.write))
         .pipe(gulp.dest(c.paths.target.css));
+});
+
+
+gulp.task('build:css:maps', function(){
+   return gulp.src(c.file.source.maps)
+        .pipe($.debug())
+        .pipe();
 });

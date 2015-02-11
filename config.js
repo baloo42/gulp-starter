@@ -67,7 +67,7 @@ var paths = {
             return this.base + "/css";
         },
 
-        cssMapsRelative: "maps",
+        cssMapsRelative: "/src/styles",
 
         get cssMaps() {
             return this.css + "/" + this.cssMapsRelative;
@@ -204,9 +204,11 @@ var sourceMaps = {
 
     write: {
         // reference the sources by comment not by header
-        addComment: true,
+        //addComment: true,
         // we don't want to host the source files
-        includeContent: false
+//        includeContent: true,
+
+        sourceMappingURLPrefix: '',
     }
 };
 
