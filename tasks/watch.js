@@ -35,7 +35,7 @@ gulp.task('watch', ['build'], function() {
     gulp.watch(c.files.styles, ['build:css', browserSync.reload])
         .on('change', onChange);
 
-    gulp.watch(c.files.source.javascript, ['build:javascript', browserSync.reload])
+    gulp.watch(c.files.source.javascript, ['build:javascript:dev', browserSync.reload])
         .on('change', onChange);
     
     gulp.watch(c.files.source.images, ['build:assets:images', browserSync.reload])
