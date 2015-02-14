@@ -16,7 +16,7 @@ var deepmerge = require('deepmerge');
 Compiles the view twig templates using global and view specific data.
 
 */
-gulp.task('build:html:compile-templates', function() {
+gulp.task('build:html:compile-templates', ['check:data'], function() {
     return gulp.src(c.files.viewTemplates)
         .pipe($.data(function(file) {
             var viewDataFile, globalData;

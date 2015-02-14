@@ -23,6 +23,24 @@ var stylesRecursive = recursive + styleFile;
 var htmlRecursive = recursive + htmlFile;
 var fontsRecursive = recursive + fontFile;
 
+
+
+var gulpLoad = {
+    pattern: 'gulp-*', // the glob to search for
+    scope: ['dependencies', 'devDependencies', 'peerDependencies'], // which keys in the config to look within
+    replaceString: 'gulp-', // what to remove from the name of the module when adding it to the context
+    camelize: true, // if true, transforms hyphenated plugins names to camel case
+    lazy: true, // whether the plugins should be lazy loaded on demand
+    // a mapping of plugins to rename
+    rename: {
+        //'gulp-task-listing' : 'taskListing'
+        //'gulp-ruby-sass'    : 'sass',
+        //        'lazypipe'         : 'lazypipe',
+    }
+};
+var $ = require('gulp-load-plugins')(gulpLoad);
+
+
 var paths = {
     source: {
         base: "./src",
@@ -163,20 +181,6 @@ var file = {
 };
 
 
-var gulpLoad = {
-    pattern: 'gulp-*', // the glob to search for
-    scope: ['dependencies', 'devDependencies', 'peerDependencies'], // which keys in the config to look within
-    replaceString: 'gulp-', // what to remove from the name of the module when adding it to the context
-    camelize: true, // if true, transforms hyphenated plugins names to camel case
-    lazy: true, // whether the plugins should be lazy loaded on demand
-    // a mapping of plugins to rename
-    rename: {
-        //'gulp-task-listing' : 'taskListing'
-        //'gulp-ruby-sass'    : 'sass',
-        //        'lazypipe'         : 'lazypipe',
-    }
-};
-
 var twig = {
     errorLogToConsole: true,
     cache: false
@@ -236,6 +240,11 @@ var imagemin = {
     interlaced: true
 };
 
+var lintreporter = function (lint, file){
+    $.util.log(file.path + ': ' + lint.error);
+    $.util.log(file.path + ': Line: ' + lint.line + ', Character: ' + lint.character);
+};
+
 
 module.exports = {
     paths: paths,
@@ -249,5 +258,6 @@ module.exports = {
     sourceMaps: sourceMaps,
     browserSync: browserSync,
     jsbeautifier: jsbeautifier,
-    imagemin: imagemin
+    imagemin: imagemin,
+    lintreporter: lintreporter
 };

@@ -8,15 +8,15 @@ var $ = require('gulp-load-plugins')(c.gulpLoad);
 
 
 gulp.task('check:data', function(){
-    return gulp.dest(c.files.templateData)
-        .pipe($.debug())
+    return gulp.src(c.files.templateData)
+        //.pipe($.debug())
         .pipe($.jsonLint())
-        .pipe($.jsonLint.report('verbose'));
+        .pipe($.jsonLint.report(c.lintreporter));
 });
 
 
 gulp.task('check:gulp'), function(){
     return gulp.src("./gulp/**/*.js")
         .pipe($.jsonLint())
-        .pipe($.jsonLint.report('verbose'));
+        .pipe($.jsonLint.report(c.lintreporter));
 }
