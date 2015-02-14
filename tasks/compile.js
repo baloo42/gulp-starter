@@ -24,7 +24,7 @@ gulp.task('build:html:compile-templates', ['check:data'], function() {
                 globalData = JSON.parse(fs.readFileSync(c.file.source.templateDataGlobal));
                 viewDataFile = c.file.source.templateData(file.path);    
             }catch(err){
-                console.log("parsing global data failed -", viewDataFile,  err);
+                $.util.log("parsing global data failed -", viewDataFile,  err);
             }
             
             
@@ -34,7 +34,7 @@ gulp.task('build:html:compile-templates', ['check:data'], function() {
                     var viewData = JSON.parse(fs.readFileSync(viewDataFile));
                     mergedData = deepmerge(globalData, viewData);
                 } catch(err) {
-                    console.log("merging template data failed -", viewDataFile,  err);
+                    $.util.log("merging template data failed -", viewDataFile,  err);
                 }
 
                 return mergedData;
