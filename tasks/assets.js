@@ -27,8 +27,7 @@ gulp.task('build:assets:fonts', function() {
   return gulp.src(require('main-bower-files')()
         .concat(c.files.source.fonts)
         .concat("bower_components/bootstrap-sass-official/assets/fonts/**/*.*"))
-      .pipe($.filter(c.files.fontsRecursive))
-      .pipe($.debug())
+    .pipe($.filter(c.files.fontsRecursive))
     .pipe($.flatten())
     .pipe(gulp.dest(c.paths.target.fonts));
 });
