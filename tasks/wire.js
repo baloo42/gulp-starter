@@ -10,16 +10,7 @@ var wiredep = require('wiredep').stream;
 // inject bower components
 gulp.task('wiredep:html', function () {
   return gulp.src(c.files.html)
+    .pipe($.filter(file => file.stat && file.stat.size))
     .pipe(wiredep())
     .pipe(gulp.dest(c.paths.target.base));
 });
-
-// gulp.task('test', function() {
-//   //TODO gulp-inject
-//   var bowerFiles = require('main-bower-files')();
-  
-//   gulp.src(bowerFiles)
-//     .pipe($.filter(c.files.javascriptRecursive))
-//     .pipe($.print())
-//     .pipe(c.target.javascript)
-// });
